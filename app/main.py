@@ -3,12 +3,13 @@ import os
 from flask import Flask, send_file
 
 app = Flask(__name__)
+project_version = '0.0.1'
 
 
 @app.route("/hello")
 def hello():
     return "Hello World from Flask in a uWSGI Nginx Docker container with \
-     Python 3.7 (from the example template)"
+     Python 3.9.1 (from the example template)"
 
 
 @app.route("/")
