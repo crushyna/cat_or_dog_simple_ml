@@ -5,3 +5,5 @@ ENV STATIC_INDEX 1
 # ENV STATIC_INDEX 0
 
 COPY ./app /app
+COPY requirements.txt /app
+RUN pip install -r requirements.txt

@@ -1,0 +1,6 @@
+ARG BaseImage
+FROM $BaseImage
+ENV REPORTS_FOLDER=./test_reports
+VOLUME /data
+COPY tests/. .
+CMD ["/bin/sh","/app/tester.sh"]
