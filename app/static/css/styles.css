@@ -3,7 +3,7 @@ hr {
 }
 
 .main-wrapper {
-    height: 100vh;  
+    height: 100vh;
 }
 
 .section {
@@ -41,6 +41,11 @@ hr {
     height: 0.18rem impo !important;
     opacity: 1;
     background-color: #3C403D;
+}
+
+.result-image {
+    width: 20% !important;
+    max-width: 200px !important;
 }
 
 #quality-ingredients {
@@ -108,10 +113,10 @@ hr {
 
 @media (min-width: 992px) {
     .container-fluid {
-        max-width: 85%;
+        max-width: 50%;
     }
     .aw-wrapper {
-        padding: 0 20%;
+        padding: 0 50%;
     }
     .aw-vertical-align {
         height: 31.25rem;
@@ -125,7 +130,7 @@ hr {
 
 @media (min-width: 1200px) {
     .container-fluid {
-        max-width: 85%;
+        max-width: 50%;
     }
     .aw-row-override {
         margin-left: -5px;

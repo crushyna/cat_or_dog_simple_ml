@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
     {% block body %}
-        <div class="p-5 pb-5 text-center bg-lightgreen text-dark mh-100 section">
+        <div class="p-5 pb-5 text-center bg-lightgreen text-dark section">
             <div class="display-1 mb-2 mt-4 d-flex justify-content-center aw-wrapper">
                 <div class="fas fa-cat d-block px-3" aria-hidden="true"></div>
                 <div>or</div> 
@@ -11,10 +11,10 @@
                 <hr class="aw-hr-long">
                 <p>Upload an image of a cat or dog, and let Tensorflow recognize your animal!</p>
             </div>
-            <div class="input-group mt-4 aw-wrapper">
-                <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                <button class="btn btn-danger btn-block" type="button" id="inputGroupFileAddon04" data-bs-toggle="modal" data-bs-target="#message-modal-sm">UPLOAD</button>
-            </div>
+            <form method="POST" action="" enctype="multipart/form-data" class="input-group mt-4 aw-wrapper">
+                <input type="file" name="image_file" accept="image*" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                <button type="submit" value="submit" class="btn btn-danger btn-block"  id="inputGroupFileAddon04" data-bs-toggle="modal" data-bs-target="#message-modal-sm">UPLOAD</button>
+            </form>
         </div>
 
         <!-- Upload modal -->
