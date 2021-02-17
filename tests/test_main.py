@@ -32,10 +32,10 @@ class TestUnsupportedPaths:
         assert b'Hello World from Flask in a uWSGI Nginx Docker container' in response.data
 
         response = client.get("/-2")
-        assert response.status_code == 200
+        assert response.status_code == 404
 
         response = client.get("/kox")
-        assert response.status_code == 200
+        assert response.status_code == 404
 
 """
 class TestFactorsof6:
