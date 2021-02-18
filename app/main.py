@@ -2,8 +2,7 @@
 Entry point for Cat or Dog - Simple ML application.
 """
 import os
-from time import sleep
-
+import random
 from flask import Flask, render_template, request, redirect, session, abort, url_for
 
 from helpers.file_cleanup import FileCleanup
@@ -49,25 +48,54 @@ def results():
     return render_template("results.html")
 
 
+def recognize_animal(param: str) -> str:
+    """
+    Temporary function for ML engine.
+    :param param: str
+    """
+    animals = ['cat', 'dog']
+    answer = random.choice(animals)
+
+    return answer
+
+
 @APP.route("/", methods=['POST'])
 def upload_file():
+    """
+    Upload file from the user to the web application.
+    File gets checked, if it has correct extension.
+    If yes, it gets resized for result page, and for ML engine (external).
+    Finally, function redirects to results page.
+    :return:
+    :rtype:
+    """
     uploaded_file = request.files['image_file']
     if uploaded_file.filename != '':
         file_ext = os.path.splitext(uploaded_file.filename)[1]
         if file_ext not in APP.config['UPLOAD_EXTENSIONS']:
             abort(400)  # TODO: add redirection to web page
+
         temp_filename = StringHelpers.generate_random_string(8)
         temp_filename_thumbnail = f"{temp_filename}_thumbnail.jpg"
+        temp_filename_ml = f"{temp_filename}_ml.jpg"
         uploaded_file.save(os.path.join(UPLOAD_FOLDER, temp_filename))
         ImageHelpers.create_thumbnail(os.path.join(UPLOAD_FOLDER, temp_filename),
                                       os.path.join(UPLOAD_FOLDER, temp_filename_thumbnail))
-        # create_ml_image(os.path.join(UPLOAD_FOLDER, temp_filename))
+        ImageHelpers.create_ml_image(os.path.join(UPLOAD_FOLDER, temp_filename),
+                                     os.path.join(UPLOAD_FOLDER, temp_filename_ml))
+
+        session['ml_engine_result'] = recognize_animal(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
         session['temp_filename'] = temp_filename
         session['temp_filename_thumbnail'] = temp_filename_thumbnail
     return redirect(url_for('results'))
 
 
 # TODO: Add redirect for 400 BAD_REQUEST
+
+# ONLY Error handling below #
+@APP.errorhandler(404)
+def page_not_found(e):
+    return render_template("index.html")
 
 
 """

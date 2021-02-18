@@ -3,10 +3,12 @@ from flask_api import status
 
 from main import APP
 
+
 @pytest.fixture
 def client(app):
     """Get a test client for your Flask app"""
     return app.test_client()
+
 
 @pytest.fixture
 def app():
@@ -15,10 +17,18 @@ def app():
     with APP.app_context():
         yield APP
 
+
 class TestRoot:
     def test_root_page(self, client):
         response = client.get("/")
         assert response.status_code == 200
+
+
+class TestResults:
+    def test_results_page(self, client):
+        response = client.get("/results")
+        assert response.status_code == 200
+
 
 class TestUnsupportedPaths:
     def test_unsupported_paths(self, client):
@@ -36,6 +46,7 @@ class TestUnsupportedPaths:
 
         response = client.get("/kox")
         assert response.status_code == 404
+
 
 """
 class TestFactorsof6:
