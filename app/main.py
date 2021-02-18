@@ -5,6 +5,8 @@ import os
 from time import sleep
 
 from flask import Flask, render_template, request, redirect, session, abort, url_for
+
+from app.helpers.file_cleanup import FileCleanup
 from helpers.string_helpers import StringHelpers
 from helpers.image_helpers import ImageHelpers
 
@@ -43,6 +45,7 @@ def results():
     """
     Page displaying results of the Machine Learning
     """
+    FileCleanup.file_cleanup(UPLOAD_FOLDER)
     return render_template("results.html")
 
 

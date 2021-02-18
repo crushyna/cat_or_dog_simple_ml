@@ -7,7 +7,7 @@ from helpers.string_helpers import StringHelpers
 
 class TestImageHelpers:
     def test_create_thumbnail(self):
-        test_filename = 'static/resources/temp/cat_example.jpg'
+        test_filename = 'cat_example.jpg'
         test_filename_thumbnail = f"static/resources/temp/cat_example_thumbnail.jpg"
         ImageHelpers.create_thumbnail(test_filename, test_filename_thumbnail)
         test_image = Image.open(test_filename_thumbnail)
