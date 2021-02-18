@@ -1,58 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cat or Dog? ML Demo / Results</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <!-- Main Container -->
-    <div class="container p-0 main-wrapper">
-        <div class="p-5 pb-5 text-center bg-lightgreen text-dark mh-100 section">
-            <div class="display-1 mb-2 mt-4 d-flex justify-content-center aw-wrapper">
-                <img src="resources/temp/cat_example.jpg" class="img-fluid" alt="cat_example">
+{% extends "layout.html" %}
+    {% block body %}
+        <div class="p-5 pb-5 text-center bg-lightgreen text-dark section">
+            <div class="display-1 mb-2 mt-0 d-flex justify-content-center aw-wrapper">
+                <img src="static/resources/temp/{{ session['temp_filename_thumbnail'] }}" class="result-image" alt="cat_example">
             </div>
             <h2 class="text-center mt-4">It's a cat!</h2>
             <div class="aw-wrapper">
                 <hr class="aw-hr-long">
             </div>
             <div class="d-grid gap-2 d-md-flex mt-4 justify-content-center">
-                <a href="index.html" type="button" class="btn btn-primary btn-lg">Try again?</a>
+                <a href="/" type="button" class="btn btn-primary btn-lg">Try again?</a>
                 <a href="#" type="button" class="btn btn-secondary btn-lg">Show raw data</a>
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="footer bg-darkgreen p-3 pt-4 aw-wrapper">
-            <ul class="list-inline text-uppercase text-center">
-                <li class="list-inline-item mx-3 mb-2">
-                    <a href="about.html" class="btn btn-dark btn-block text-naturalyellow text-decoration-none">About this project</a>
-                </li>
-            </ul>
-            <ul class="list-inline text-center">
-                <li class="list-inline-item mx-2">
-                    <a href="https://www.linkedin.com/in/radosław-malinowski-6a1282115/" class="text-naturalyellow">
-                        <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item mx-2">
-                    <a href="https://github.com/crushyna" class="text-naturalyellow">
-                        <i class="fa fa-github-square fa-2x" aria-hidden="true"></i>
-                    </a>
-                </li>
-                </li>
-            </ul>
-        </footer>        
-    </div>
-    <!-- End of Main Container -->    
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/932d6381e0.js" crossorigin="anonymous"></script>
-</body>
-</html>
+    {% endblock %}

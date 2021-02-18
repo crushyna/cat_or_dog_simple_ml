@@ -3,7 +3,7 @@ hr {
 }
 
 .main-wrapper {
-    height: 100vh;  
+    height: 100vh;
 }
 
 .section {
@@ -38,7 +38,7 @@ hr {
 
 .aw-hr-long {
     margin: 2rem 0;
-    height: 0.18rem impo !important;
+    height: 0.18rem;
     opacity: 1;
     background-color: #3C403D;
 }
@@ -67,7 +67,6 @@ hr {
     display: flex;
 }
 
-
 /* MEDIA QUERIES */
 @media (max-width: 576px){
     .overlay {
@@ -76,10 +75,16 @@ hr {
     }
 }
 
+@media (max-height: 726px){
+    .main-wrapper {
+    height: 120vh;
+    }
+}
+
 @media (min-width: 576px) {
-    #quality-ingredients {
-        height: 18.75rem;
-    }    
+    .aw-wrapper {
+        padding: 0 10%;
+    }
     .aw-vertical-align {
         height: 18.75rem;
     }    
@@ -107,9 +112,6 @@ hr {
 }
 
 @media (min-width: 992px) {
-    .container-fluid {
-        max-width: 85%;
-    }
     .aw-wrapper {
         padding: 0 20%;
     }
@@ -125,7 +127,7 @@ hr {
 
 @media (min-width: 1200px) {
     .container-fluid {
-        max-width: 85%;
+        max-width: 900px;
     }
     .aw-row-override {
         margin-left: -5px;
