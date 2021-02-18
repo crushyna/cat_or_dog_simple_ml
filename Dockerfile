@@ -5,5 +5,8 @@ FROM tiangolo/uwsgi-nginx-flask:python3.8-alpine
 ENV STATIC_INDEX 0
 
 COPY ./app /app
-COPY requirements.txt /app
+
+# required for Pillow:
+RUN apk add zlib-dev jpeg-dev gcc musl-dev
+RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt

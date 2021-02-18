@@ -4,8 +4,9 @@ Entry point for Cat or Dog - Simple ML application.
 import os
 from time import sleep
 
-from flask import Flask, send_file, render_template, request, redirect, url_for, session, abort
+from flask import Flask, render_template, request, redirect, session, abort, url_for
 from helpers.string_helpers import StringHelpers
+from helpers.image_helpers import ImageHelpers
 
 UPLOAD_FOLDER = 'static/resources/temp'
 if not os.path.exists(UPLOAD_FOLDER):
@@ -53,8 +54,13 @@ def upload_file():
         if file_ext not in APP.config['UPLOAD_EXTENSIONS']:
             abort(400)  # TODO: add redirection to web page
         temp_filename = StringHelpers.generate_random_string(8)
+        temp_filename_thumbnail = f"{temp_filename}_thumbnail.jpg"
         uploaded_file.save(os.path.join(UPLOAD_FOLDER, temp_filename))
+        ImageHelpers.create_thumbnail(os.path.join(UPLOAD_FOLDER, temp_filename),
+                                      os.path.join(UPLOAD_FOLDER, temp_filename_thumbnail))
+        # create_ml_image(os.path.join(UPLOAD_FOLDER, temp_filename))
         session['temp_filename'] = temp_filename
+        session['temp_filename_thumbnail'] = temp_filename_thumbnail
     return redirect(url_for('results'))
 
 
