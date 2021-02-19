@@ -3,6 +3,7 @@ Entry point for Cat or Dog - Simple ML application.
 """
 import os
 import random
+import requests
 from flask import Flask, render_template, request, redirect, session, abort, url_for
 
 from helpers.file_cleanup import FileCleanup
@@ -53,10 +54,13 @@ def recognize_animal(param: str) -> str:
     Temporary function for ML engine.
     :param param: str
     """
-    animals = ['cat', 'dog']
-    answer = random.choice(animals)
+    url = f"{os.getenv('ML_SERVER')}{param}"
+    response = requests.request("GET", url)
 
-    return answer
+    # animals = ['cat', 'dog']
+    # answer = random.choice(animals)
+
+    return response.json()['message']
 
 
 @APP.route("/", methods=['POST'])
@@ -84,7 +88,8 @@ def upload_file():
         ImageHelpers.create_ml_image(os.path.join(UPLOAD_FOLDER, temp_filename),
                                      os.path.join(UPLOAD_FOLDER, temp_filename_ml))
 
-        session['ml_engine_result'] = recognize_animal(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
+        # session['ml_engine_result'] = recognize_animal(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
+        session['ml_engine_result'] = recognize_animal(temp_filename_ml)
         session['temp_filename'] = temp_filename
         session['temp_filename_thumbnail'] = temp_filename_thumbnail
     return redirect(url_for('results'))

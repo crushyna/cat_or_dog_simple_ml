@@ -4,6 +4,9 @@ FROM tiangolo/uwsgi-nginx-flask:python3.8-alpine
 # ENV STATIC_INDEX 1
 ENV STATIC_INDEX 0
 
+# This refers to local, development ML server. Change it to your published FunctionApp:
+ENV ML_SERVER 'http://mlserver/api/MLServer?data='
+
 COPY ./app /app
 
 # required for Pillow:
