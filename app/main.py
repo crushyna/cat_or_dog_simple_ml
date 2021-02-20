@@ -1,5 +1,6 @@
 """
 Entry point for Cat or Dog - Simple ML application.
+This application requires working Azure Function that works as ML Server.
 """
 import os
 import random
@@ -88,7 +89,7 @@ def upload_file():
         ImageHelpers.create_ml_image(os.path.join(UPLOAD_FOLDER, temp_filename),
                                      os.path.join(UPLOAD_FOLDER, temp_filename_ml))
 
-        # session['ml_engine_result'] = recognize_animal(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
+        session['ml_engine_result'] = recognize_animal(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
         session['ml_engine_result'] = recognize_animal(temp_filename_ml)
         session['temp_filename'] = temp_filename
         session['temp_filename_thumbnail'] = temp_filename_thumbnail
@@ -102,20 +103,6 @@ def upload_file():
 def page_not_found(e):
     return render_template("index.html")
 
-
-"""
-# Everything not declared before (not a Flask route / API endpoint)...
-@APP.route("/<path:path>")
-def route_frontend(path):
-    # ...could be a static file needed by the front end that
-    # doesn't use the `static` path (like in `<script src="bundle.js">`)
-    file_path = os.path.join(APP.static_folder, path)
-    if os.path.isfile(file_path):
-        return send_file(file_path)
-    # ...or should be handled by the SPA's "router" in front end
-    index_path = os.path.join(APP.static_folder, "index.html")
-    return send_file(index_path)
-"""
 
 if __name__ == "__main__":
     # Only for debugging while developing

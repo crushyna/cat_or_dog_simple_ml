@@ -36,7 +36,7 @@ class ImageHelpers:
         """
         try:
             image = Image.open(image_source_path)
-            image.thumbnail((60, 60))
+            image.thumbnail((160, 160))
             image.save(image_destination_path)
         except OSError as er:
             return f"Error: {er}"
