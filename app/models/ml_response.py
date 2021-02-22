@@ -24,22 +24,16 @@ class MLResponseClass:
         :return: json
         """
         assert os.path.exists(image_file)
-        logging.info(f"Filepath: {image_file}")
-        logging.info(f"File exists: {os.path.isfile(image_file)}")
+        logging.info(f"Uploaded file exists: {os.path.isfile(image_file)}")
         try:
             logging.info(f"Sending request to: {ml_server_address}")
             url = ml_server_address
             payload = open(image_file, 'rb')
-            #files = {'file': open(image_file, 'rb')}
-            # files = ('file', open(image_file, 'rb'))
             headers = {'Content-Type': 'image/jpeg'}
             response = requests.request("POST", url, headers=headers, data=payload)
-            # response = requests.request("POST", url, headers=headers, files=files)
-            logging.info("Using FILES as request body.")
-            # response = requests.request("POST", url, headers=headers, files=files)
-            # response = requests.request("POST", url, files=files)
 
         except Exception as er:
             return f"Cannot establish connection to server. {er}"  # this needs proper structure
 
+        logging.info(f"Received response: {response.json()}")
         return response.json()

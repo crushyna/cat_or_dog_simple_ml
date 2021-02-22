@@ -76,8 +76,7 @@ def upload_file():
     If yes, it gets resized for result page, and for ML engine (external).
     Than it's send to ML Server.
     Finally, function redirects to results page.
-    :return:
-    :rtype:
+    :return: result page
     """
     uploaded_file = request.files['image_file']
     if uploaded_file.filename != '':
@@ -95,19 +94,11 @@ def upload_file():
         ImageHelpers.create_ml_image(os.path.join(UPLOAD_FOLDER, temp_filename),
                                      os.path.join(UPLOAD_FOLDER, temp_filename_ml))
 
-        # ml_response = MLResponseClass(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
         ml_response = MLResponseClass(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
-
-        # session['ml_engine_result'] = recognize_animal(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
-        # session['ml_engine_result'] = recognize_animal(temp_filename_ml)
 
         session['ml_engine_result'] = ml_response.response['message']
         session['ml_engine_result_data'] = ml_response.response['data']
         session['ml_engine_result_status'] = ml_response.response['status']
-
-        session['ml_engine_result'] = session['ml_engine_result']['message']
-        session['ml_engine_result_data'] = session['ml_engine_result']['data']
-        session['ml_engine_result_status'] = session['ml_engine_result']['status']
 
         session['temp_filename'] = temp_filename
         session['temp_filename_thumbnail'] = temp_filename_thumbnail
