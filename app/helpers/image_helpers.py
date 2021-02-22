@@ -35,8 +35,8 @@ class ImageHelpers:
         :return: image_destination_path: str
         """
         try:
-            image = Image.open(image_source_path)
-            image.thumbnail((160, 160))
+            image = Image.open(image_source_path).convert("RGB")
+            image = image.resize((160, 160))
             image.save(image_destination_path)
         except OSError as er:
             return f"Error: {er}"
