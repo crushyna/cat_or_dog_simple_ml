@@ -4,7 +4,7 @@
             <div class="display-1 mb-2 mt-0 d-flex justify-content-center aw-wrapper">
                 <img src="static/resources/temp/{{ session['temp_filename_thumbnail'] }}" class="result-image" alt="cat_example">
             </div>
-            <h2 class="text-center mt-4">It's a cat!</h2>
+            <h2 class="text-center mt-4">It's a {{ session['ml_engine_result'] }}!</h2>
             <div class="aw-wrapper">
                 <hr class="aw-hr-long">
             </div>
