@@ -95,6 +95,7 @@ def upload_file():
         ImageHelpers.create_ml_image(os.path.join(UPLOAD_FOLDER, temp_filename),
                                      os.path.join(UPLOAD_FOLDER, temp_filename_ml))
 
+        # ml_response = MLResponseClass(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
         ml_response = MLResponseClass(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
 
         # session['ml_engine_result'] = recognize_animal(os.path.join(UPLOAD_FOLDER, temp_filename_ml))

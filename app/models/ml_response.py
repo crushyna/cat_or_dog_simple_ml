@@ -28,13 +28,16 @@ class MLResponseClass:
         logging.info(f"File exists: {os.path.isfile(image_file)}")
         try:
             logging.info(f"Sending request to: {ml_server_address}")
-            url = f"{ml_server_address}"
-            # payload = image_file
-            files = [('file', open(image_file, 'rb'))]
+            url = ml_server_address
+            payload = open(image_file, 'rb')
+            #files = {'file': open(image_file, 'rb')}
             # files = ('file', open(image_file, 'rb'))
             headers = {'Content-Type': 'image/jpeg'}
-            # response = requests.request("POST", url, headers=headers, data=payload)
-            response = requests.request("POST", url, headers=headers, files=files)
+            response = requests.request("POST", url, headers=headers, data=payload)
+            # response = requests.request("POST", url, headers=headers, files=files)
+            logging.info("Using FILES as request body.")
+            # response = requests.request("POST", url, headers=headers, files=files)
+            # response = requests.request("POST", url, files=files)
 
         except Exception as er:
             return f"Cannot establish connection to server. {er}"  # this needs proper structure
