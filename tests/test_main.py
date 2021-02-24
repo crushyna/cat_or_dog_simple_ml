@@ -13,7 +13,6 @@ def client(app):
 @pytest.fixture
 def app():
     """Yield your app with its context set up and ready"""
-
     with APP.app_context():
         yield APP
 
@@ -36,28 +35,15 @@ class TestUnsupportedPaths:
         response = client.get("/-2")
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert b'Factoring of "-2" is not supported' in response.data
+
+        Non-existing pages should always redirect to starting page.
         """
         response = client.get("/hello")
         assert response.status_code == 200
         assert b'Hello World from Flask in a uWSGI Nginx Docker container' in response.data
 
         response = client.get("/-2")
-        assert response.status_code == 404
+        assert response.status_code == 200
 
         response = client.get("/kox")
-        assert response.status_code == 404
-
-
-"""
-class TestFactorsof6:
-    def test_factor_page_6(self, client):
-        response = client.get("/6")
         assert response.status_code == 200
-        assert b'Factors of 6 are 1, 2, 3, 6.' in response.data
-
-class TestFactorsof0:
-    def test_factor_page_0(self, client):
-        response = client.get("/0")
-        assert response.status_code == 200
-        assert b'Any positive integer is a factor of 0.' in response.data
-"""
