@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+    {% block body %}
+        <div class="p-5 pb-5 text-center bg-lightgreen text-dark section">
+            <h3 class="text-center mt-4">{{ error_message }}!</h3>
+            <div class="aw-wrapper">
+                <hr class="aw-hr-long">
+            </div>
+            <div class="d-grid gap-2 d-md-flex mt-4 justify-content-center">
+                <a href="/" type="button" class="btn btn-primary btn-lg">Try again?</a>
+            </div>
+        </div>
+
+    {% endblock %}

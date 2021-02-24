@@ -13,7 +13,7 @@ class FileCleanup:
         now = time.time()
         try:
             for file in os.listdir(path):
-                if os.stat(os.path.join(path, file)).st_mtime < now - 15 * 60:
+                if os.stat(os.path.join(path, file)).st_mtime < now - 60 * 60:
                     if os.path.isfile(os.path.join(path, file)):
                         os.remove(os.path.join(path, file))
 
