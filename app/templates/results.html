@@ -2,15 +2,28 @@
     {% block body %}
         <div class="p-5 pb-5 text-center bg-lightgreen text-dark section">
             <div class="display-1 mb-2 mt-0 d-flex justify-content-center aw-wrapper">
+                {% if not session['ml_engine_result'] == 'unknown' %}
                 <img src="static/resources/temp/{{ session['temp_filename_thumbnail'] }}" class="result-image" alt="cat_example">
+                {% else %}
+                <img src="static/cat_interesting.jpg" class="result-image" alt="cat_example">
+                {% endif %}
             </div>
+            {% if not session['ml_engine_result'] == 'unknown' %}
             <h2 class="text-center mt-4">It's a {{ session['ml_engine_result'] }}!</h2>
+            {% else %}
+            <h2 class="text-center mt-4">No idea!</h2>
+            {% endif %}
             <div class="aw-wrapper">
                 <hr class="aw-hr-long">
             </div>
             <div class="d-grid gap-2 d-md-flex mt-4 justify-content-center">
                 <a href="/" type="button" class="btn btn-primary btn-lg">Try again?</a>
-                <a href="#" type="button" class="btn btn-secondary btn-lg">Show raw data</a>
+                <a href="#" data-toggle="collapse" data-target="#showRaw" aria-expanded="false" aria-controls="showRaw" type="button" class="btn btn-secondary btn-lg nav-link">Show raw data</a>
+            </div>
+            <div id="showRaw" class="collapse mt-2 mt-sm-5">
+                <div class="text-center border border-light p-2 p-sm-3 aw-about">
+                    Lorem ipsum dolor sit amet
+                </div>
             </div>
         </div>
 
