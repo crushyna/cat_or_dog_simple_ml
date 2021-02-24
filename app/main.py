@@ -20,7 +20,7 @@ LOGS_FOLDER = 'logs'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-PROJECT_VERSION = '0.0.1'
+PROJECT_VERSION = '0.1.1'
 
 APP = Flask(__name__)
 APP.secret_key = b'crushyna'
