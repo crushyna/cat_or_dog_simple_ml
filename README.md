@@ -3,7 +3,7 @@
 ### Demo available here: http://catordogmldemo.azurewebsites.net
 ---
 
-Simple demonstartion of web application that can recognize animal (cat or dog) from a selected photography.
+Simple demo of web application that can recognize animal (cat or dog) from a selected photography.
 Created using Flask UWSGI Docker image (by [tiangolo](https://github.com/tiangolo)) and machine learning server ([code available here](https://github.com/crushyna/cat_or_dog_simple_ml_mlfunction)).
 
 ## Local installation
@@ -35,3 +35,8 @@ docker run -it --rm -v ${PWD}:/data cat_or_dog_simple_ml_tests:tester
 docker run -e ML_SERVER='<ml_server_addres>/api/MLServer' -it --rm -v  ${PWD}:/data cat_or_dog_simple_ml_tests:tester
 ```
 When it's done, please feel free to revise results in folder cat_or_dog_simple_ml/test_reports
+
+## Cloud deployment
+Both repositories have their Dockerfile included. As far as web application (current repo) should be deployable at any cloud docker engine of your choice, ML Server has been created as dedicated Azure Function App, thus won't work anywhere else without proper code changes.
+
+##### TODO: make ML Server available as docker container
