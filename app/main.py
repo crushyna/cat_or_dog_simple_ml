@@ -35,7 +35,7 @@ def allowed_file(filename):
     Function for checking, if uploaded file has correct extension.
     :param filename:
     """
-    logging.info(f"Checking {filename} extension...")
+    logging.info("Checking %s extension...", filename)
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -86,11 +86,11 @@ def upload_file():
     uploaded_file = request.files['image_file']
     if uploaded_file.filename != '':
         if not allowed_file(uploaded_file.filename):
-            logging.info(f"Wrong file extension!")
+            logging.info("Wrong file extension!")
             session['filetype_ok'] = False
             abort(502)
 
-        logging.info(f"Correct file extension. Proceeding.")
+        logging.info("Correct file extension. Proceeding.")
         session['filetype_ok'] = True
 
         temp_filename = StringHelpers.generate_random_string(8)
@@ -148,7 +148,9 @@ def bad_gateway(error):
     Redirects to error page with proper message.
     :return: error page with custom message
     """
-    return render_template("error.html", error_message=f"Wrong file type or file is missing. Images only! {error}"), 502
+    return render_template("error.html",
+                           error_message=f"Wrong file type or file is missing. "
+                                         f"Images only! {error}"), 502
 
 
 if __name__ == "__main__":
