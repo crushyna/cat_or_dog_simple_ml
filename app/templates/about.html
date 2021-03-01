@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+    {% block body %}
+        <div class="p-5 pb-5 bg-lightgreen text-dark section-about">
+            <div class="display-1 mb-2 mt-0 d-flex justify-content-center aw-wrapper">
+                <img src="{{ url_for('static', filename='science_dog.jpg') }}" class="result-image" alt="cat_example">
+            </div>
+            <h1 class="text-center mt-4">About</h1>
+            <div class="aw-wrapper">
+                <hr class="aw-hr-long">
+            </div>
+{#            <div class="d-grid gap-2 d-md-flex mt-4 justify-content-center">#}
+            <div class="pb-5 text- mt-4 justify-content-start">
+                <p>Simple demo of web application that can recognize animal (cat or dog) from a selected photography.</p>
+                <p>Created using Flask UWSGI Docker image (by <a href="https://github.com/tiangolo">tiangolo</a>)
+                    and machine learning server (<a href="https://github.com/crushyna/cat_or_dog_simple_ml_mlfunction">code available here</a>).</p>
+            </div>
+            <div>
+                <h2 id="how-it-works-">How it works:</h2>
+                <ul>
+                    <li>User sends image to webapp (&lt;5MB)</li>
+                    <li>Input image is resized twice:<ul>
+                        <li>For result page (400x250px max)</li>
+                        <li>For ML engine (160x160px)</li>
+                </ul>
+                </li>
+                    <li>Smaller image (160x160) is sent to ML Server (Azure Function App)</li>
+                    <li>Function App recognizes animal (cat or dog) from the image, using pre-trained Tensorflow model</li>
+                    <li>Function App returns information, whether it is a cat, dog or unknown creature (when score is lower than 80%)</li>
+                </ul>
+                <h3 id="pros-">Pros:</h3>
+                    <ul>
+                     <li>it is cheap! (due to sleepy nature of Function App)</li>
+                        <li> <small>most of the time</small> it works! (thanks to me :) )</li>
+                    </ul>
+                <h3 id="cons-">Cons:</h3>
+                    <ul>
+                        <li>Function App actually can take some time to start after long time of sleep</li>
+                        <li>There's no image padding implemented, so make sure that animal covers most of the photography</li>
+                    </ul>
+                <p><small>...and as you can see, front-end is my passion :)</small></p>
+
+            </div>
+        </div>
+
+    {% endblock %}

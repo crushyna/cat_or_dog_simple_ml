@@ -18,7 +18,11 @@
         <footer class="footer bg-darkgreen p-3 pt-4">
             <ul class="list-inline text-uppercase text-center">
                 <li class="list-inline-item mx-3 mb-2">
-                    <a href="/" class="btn btn-dark btn-block text-naturalyellow text-decoration-none">About this project</a>
+                    {% if session['page_title'] == 'About' %}
+                    <a href="/" class="btn btn-dark btn-block text-naturalyellow text-decoration-none">Return to starting page</a>
+                    {% else %}
+                    <a href="/about" class="btn btn-dark btn-block text-naturalyellow text-decoration-none">About this project</a>
+                    {% endif %}
                 </li>
             </ul>
             <ul class="list-inline text-center">
