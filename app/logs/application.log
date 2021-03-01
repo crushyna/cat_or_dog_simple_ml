@@ -1,3 +1,14 @@
 2021/03/01 18:20:15.946 : INFO : Received response: {'message': 'cat', 'data': {'scores': '[9.9943787e-01 5.6210096e-04]', 'classes': "['cat', 'dog']", 'score_diff': '0.9988758'}, 'status': 'success'}
 2021/03/01 18:20:25.786 : INFO : Rendering 'about' template.
 2021/03/01 18:20:57.509 : INFO : Rendering welcome template.
+2021/03/01 18:24:39.890 : INFO : Rendering welcome template.
+2021/03/01 18:24:47.748 : INFO : Checking funny-cat-faces-pictures.jpg extension...
+2021/03/01 18:24:47.749 : INFO : Correct file extension. Proceeding.
+2021/03/01 18:24:47.866 : INFO : Uploaded file exists: True
+2021/03/01 18:24:47.866 : INFO : Sending request to: http://mlserver/api/MLServer
+2021/03/01 18:24:47.873 : DEBUG : Starting new HTTP connection (1): mlserver:80
+2021/03/01 18:24:48.616 : DEBUG : http://mlserver:80 "POST /api/MLServer HTTP/1.1" 200 None
+2021/03/01 18:24:48.626 : INFO : Received response: {'message': 'cat', 'data': {'scores': '[9.993001e-01 6.999099e-04]', 'classes': "['cat', 'dog']", 'score_diff': '0.9986002'}, 'status': 'success'}
+2021/03/01 18:24:48.636 : INFO : Rendering 'Results' template.
+2021/03/01 18:24:53.911 : INFO : Rendering 'about' template.
+2021/03/01 18:24:57.644 : INFO : Rendering welcome template.
