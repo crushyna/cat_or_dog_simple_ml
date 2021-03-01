@@ -20,7 +20,7 @@ LOGS_FOLDER = 'logs'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-PROJECT_VERSION = '0.1.2'
+PROJECT_VERSION = '0.1.3'
 
 APP = Flask(__name__)
 APP.secret_key = b'crushyna'
@@ -62,12 +62,23 @@ def main():
     return render_template("index.html")
 
 
+@APP.route("/about")
+def about():
+    """
+    Returns page with information about this project.
+    """
+    session['page_title'] = 'About'
+    logging.info("Rendering 'about' template.")
+    return render_template("about.html")
+
+
 @APP.route("/results")
 def results():
     """
     Page displaying results of the Machine Learning
     """
     session['page_title'] = 'Results'
+    logging.info("Rendering 'Results' template.")
     FileCleanup.file_cleanup(UPLOAD_FOLDER)
     return render_template("results.html")
 
