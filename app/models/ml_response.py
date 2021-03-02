@@ -33,6 +33,7 @@ class MLResponseClass:
             response = requests.request("POST", url, headers=headers, data=payload)
 
         except Exception as er:
+            logging.info(er)
             return f"Cannot establish connection to server. {er}"  # this needs proper structure
 
         logging.info(f"Received response: {response.json()}")

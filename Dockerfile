@@ -13,20 +13,9 @@ RUN apt-get update \
     && echo "root:Docker!" | chpasswd
 
 COPY sshd_config /etc/ssh/
-# COPY init_container.sh /opt/startup/
-# RUN chmod 755 /opt/startup/init_container.sh
-
-# COPY app/prestart.sh /app/
-# RUN chmod 755 /app/prestart.sh
-
-# ENTRYPOINT ["/opt/startup/init_container.sh"]
-
-# Open port 2222 for SSH access
 EXPOSE 2222 80
 
 COPY ./app /app
 
-# required for Pillow:
-# RUN apk add zlib-dev jpeg-dev gcc musl-dev
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
