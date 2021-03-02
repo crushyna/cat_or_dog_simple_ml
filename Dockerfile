@@ -6,18 +6,23 @@ ENV STATIC_INDEX 0
 # This refers to local, development ML server. Change it to your published FunctionApp:
 ENV ML_SERVER 'http://mlserver/api/MLServer'
 
-# Install OpenSSH and set the password for root to "Docker!". In this example, "apk add" is the install instruction for an Alpine Linux-based image.
+# Install OpenSSH and set the password for root to "Docker!". In this example, "apt-get" is the install instruction for an Alpine Linux-based image.
 COPY debian_sources.list /etc/apt/sources.list.d/
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssh-server \
+    && echo "root:Docker!" | chpasswd
 
-RUN apt-get update
-RUN apt-get install openssh-client \
-     && echo "root:Docker!" | chpasswd
-
-# Copy the sshd_config file to the /etc/ssh/ directory
 COPY sshd_config /etc/ssh/
+# COPY init_container.sh /opt/startup/
+# RUN chmod 755 /opt/startup/init_container.sh
+
+# COPY app/prestart.sh /app/
+# RUN chmod 755 /app/prestart.sh
+
+# ENTRYPOINT ["/opt/startup/init_container.sh"]
 
 # Open port 2222 for SSH access
-EXPOSE 80 2222
+EXPOSE 2222 80
 
 COPY ./app /app
 
