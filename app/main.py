@@ -20,7 +20,7 @@ LOGS_FOLDER = 'logs'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-PROJECT_VERSION = '0.1.3'
+PROJECT_VERSION = '1.0.1'
 
 APP = Flask(__name__)
 APP.secret_key = b'crushyna'
@@ -109,11 +109,11 @@ def upload_file():
         temp_filename_ml = f"{temp_filename}_ml.jpg"
 
         uploaded_file.save(os.path.join(UPLOAD_FOLDER, temp_filename))
+
         ImageHelpers.create_thumbnail(os.path.join(UPLOAD_FOLDER, temp_filename),
                                       os.path.join(UPLOAD_FOLDER, temp_filename_thumbnail))
         ImageHelpers.create_ml_image(os.path.join(UPLOAD_FOLDER, temp_filename),
                                      os.path.join(UPLOAD_FOLDER, temp_filename_ml))
-
         ml_response = MLResponseClass(os.path.join(UPLOAD_FOLDER, temp_filename_ml))
 
         session['ml_engine_result'] = ml_response.response['message']

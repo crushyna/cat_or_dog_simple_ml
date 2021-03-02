@@ -1,3 +1,5 @@
+import logging
+
 from PIL import Image
 
 
@@ -17,6 +19,7 @@ class ImageHelpers:
         :return: image_destination_path: str
         """
         try:
+            logging.info("Creating thumbnail image...")
             image = Image.open(image_source_path)
             image.thumbnail((400, 250))
             image.save(image_destination_path)
@@ -35,7 +38,7 @@ class ImageHelpers:
         :return: image_destination_path: str
         """
         try:
-            # image = Image.open(image_source_path).convert("RGB")
+            logging.info("Creating ML image...")
             image = Image.open(image_source_path)
             image = image.resize((160, 160))
             image.save(image_destination_path)
