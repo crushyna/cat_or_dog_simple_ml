@@ -160,8 +160,8 @@ def bad_gateway(error):
     :return: error page with custom message
     """
     return render_template("error.html",
-                           error_message=f"Wrong file type or file is missing. "
-                                         f"Images only! {error}"), 502
+                           error_message=f"Wrong file or no server connection! "
+                                         f"{error}"), 502
 
 
 if __name__ == "__main__":
