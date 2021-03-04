@@ -1,7 +1,7 @@
-import json
 import os
 import requests
 import logging
+from flask import abort
 
 
 class MLResponseClass:
@@ -15,7 +15,7 @@ class MLResponseClass:
         self.response = self.send_request_to_ml_engine(self.ml_server_address, self.ml_filename)
 
     @staticmethod
-    def send_request_to_ml_engine(ml_server_address: str, image_file: str) -> json:
+    def send_request_to_ml_engine(ml_server_address: str, image_file: str) ->dict:
         """
         Send HTTP request to ML Server instance.
         ML Server address is stored in environment variable 'ML_SERVER' (by default provided by Dockerfile).
@@ -31,10 +31,9 @@ class MLResponseClass:
             payload = open(image_file, 'rb')
             headers = {'Content-Type': 'image/jpeg'}
             response = requests.request("POST", url, headers=headers, data=payload)
+            logging.info(f"Received response: {response}")
+            return response.json()
 
         except Exception as er:
             logging.info(er)
-            return f"Cannot establish connection to server. {er}"  # this needs proper structure
-
-        logging.info(f"Received response: {response.json()}")
-        return response.json()
+            abort(502, er)
