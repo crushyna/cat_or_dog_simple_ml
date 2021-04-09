@@ -60,6 +60,7 @@ def main():
     Main route for the application. All wrong addresses are redirected here as well.
     """
     FileCleanup.file_cleanup(LOGS_FOLDER)
+    session.clear()
     session['page_title'] = 'Start'
     logging.info("Rendering welcome template.")
     return render_template("index.html")
@@ -80,6 +81,9 @@ def results():
     """
     Page displaying results of the Machine Learning
     """
+    if session['ml_engine_result_status'] == 'error':
+        abort(502, error=session['ml_engine_result'])
+
     session['page_title'] = 'Results'
     logging.info("Rendering 'Results' template.")
     FileCleanup.file_cleanup(UPLOAD_FOLDER)

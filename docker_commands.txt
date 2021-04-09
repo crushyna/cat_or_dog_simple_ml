@@ -1,4 +1,4 @@
-docker-compose build
+docker-compose build --parallel
 docker build -t cat_or_dog_simple_ml_tests:tester -f Dockerfile.tester --build-arg BaseImage=cat_or_dog_simple_ml_webapp .
-docker run -it --rm -v ${PWD}:/data cat_or_dog_simple_ml_tests:tester
+docker run -it --rm -v ${PWD}:/data --network=cat_or_dog_simple_ml_default cat_or_dog_simple_ml_tests:tester
 docker run -e ML_SERVER='https://catordogmldemo-mlserver.azurewebsites.net/api/MLServer' -it --rm -v  ${PWD}:/data cat_or_dog_simple_ml_tests:tester
