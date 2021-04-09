@@ -1,4 +1,5 @@
 import pytest
+from flask import session
 from flask_api import status
 
 from main import APP
@@ -23,10 +24,20 @@ class TestRoot:
         assert response.status_code == 200
 
 
-class TestResults:
-    def test_results_page(self, client):
-        response = client.get("/results")
+class TestAbout:
+    def test_about_page(self, client):
+        response = client.get("/about")
         assert response.status_code == 200
+
+
+class TestResults:
+    def test_about_page(self, client):
+        """
+        This page should not be available until proper data is available, thus
+        response == 502 is valid.
+        """
+        response = client.get("/results")
+        assert response.status_code == 500
 
 
 class TestUnsupportedPaths:
