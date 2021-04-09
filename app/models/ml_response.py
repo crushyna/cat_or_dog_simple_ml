@@ -15,7 +15,7 @@ class MLResponseClass:
         self.response = self.send_request_to_ml_engine(self.ml_server_address, self.ml_filename)
 
     @staticmethod
-    def send_request_to_ml_engine(ml_server_address: str, image_file: str) ->dict:
+    def send_request_to_ml_engine(ml_server_address: str, image_file: str) -> dict:
         """
         Send HTTP request to ML Server instance.
         ML Server address is stored in environment variable 'ML_SERVER' (by default provided by Dockerfile).

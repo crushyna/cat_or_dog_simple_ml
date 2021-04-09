@@ -21,14 +21,14 @@ Of course you can re-order and change directory structure. If so, be sure to rev
 This application is equipped with collection of pytest / pylinter tests available to run locally.
 In order to run them, please install the aplication locally in advance (p. Local installation), then:
 1. Enter cat_or_dog_simple_ml directory
-2. Make sure both repositories (webapp and ML server) are already built (docker-compose build)
+2. Make sure both repositories (webapp and ML server) are already built (docker-compose build) and running (docker-compose run)
 3. Build test app: 
 ```
 docker build -t cat_or_dog_simple_ml_tests:tester -f Dockerfile.tester --build-arg BaseImage=cat_or_dog_simple_ml_webapp . 
 ```
 6. Now you can either test it using local or online ML Server (local is default). To run test locally, use:
 ```
-docker run -it --rm -v ${PWD}:/data cat_or_dog_simple_ml_tests:tester
+docker run -it --rm -v ${PWD}:/data --network=cat_or_dog_simple_ml_default cat_or_dog_simple_ml_tests:tester
 ```
 7. To test it online, use:
 ```
