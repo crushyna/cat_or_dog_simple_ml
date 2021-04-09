@@ -19,14 +19,17 @@ LOGS_FOLDER = 'logs'
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+    
+if not os.path.isfile(LOGS_FOLDER+'/application.log'):
+    os.mknod(LOGS_FOLDER+'application.log')
 
-PROJECT_VERSION = '1.0.1'
+PROJECT_VERSION = '1.0.2'
 
 APP = Flask(__name__)
 APP.secret_key = b'crushyna'
 APP.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 APP.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
-APP.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', 'jpeg']
+APP.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.jpeg']
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
@@ -102,11 +105,12 @@ def upload_file():
             abort(502)
 
         logging.info("Correct file extension. Proceeding.")
+        filename, file_extension = os.path.splitext(uploaded_file.filename)
         session['filetype_ok'] = True
 
         temp_filename = StringHelpers.generate_random_string(8)
-        temp_filename_thumbnail = f"{temp_filename}_thumbnail.jpg"
-        temp_filename_ml = f"{temp_filename}_ml.jpg"
+        temp_filename_thumbnail = f"{temp_filename}_thumbnail{file_extension}"
+        temp_filename_ml = f"{temp_filename}_ml{file_extension}"
 
         uploaded_file.save(os.path.join(UPLOAD_FOLDER, temp_filename))
 
