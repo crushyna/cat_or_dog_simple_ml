@@ -19,6 +19,9 @@ LOGS_FOLDER = 'logs'
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+
+if not os.path.exists(LOGS_FOLDER):
+    os.makedirs(LOGS_FOLDER)
     
 if not os.path.isfile(LOGS_FOLDER+'/application.log'):
     os.mknod(LOGS_FOLDER+'application.log')
