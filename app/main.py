@@ -10,10 +10,6 @@ from helpers.file_cleanup import FileCleanup
 from helpers.string_helpers import StringHelpers
 from helpers.image_helpers import ImageHelpers
 
-logging.basicConfig(filename=os.path.join('logs', 'application.log'), level=logging.DEBUG,
-                    format='%(asctime)s.%(msecs)03d : %(levelname)s : %(message)s',
-                    datefmt='%Y/%m/%d %H:%M:%S')
-
 UPLOAD_FOLDER = 'static/resources/temp'
 LOGS_FOLDER = 'logs'
 
@@ -25,6 +21,10 @@ if not os.path.exists(LOGS_FOLDER):
     
 if not os.path.isfile(LOGS_FOLDER+'/application.log'):
     os.mknod(LOGS_FOLDER+'application.log')
+
+logging.basicConfig(filename=os.path.join('logs', 'application.log'), level=logging.DEBUG,
+                    format='%(asctime)s.%(msecs)03d : %(levelname)s : %(message)s',
+                    datefmt='%Y/%m/%d %H:%M:%S')
 
 PROJECT_VERSION = '1.0.2'
 
