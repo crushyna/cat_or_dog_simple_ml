@@ -26,7 +26,7 @@ logging.basicConfig(filename=os.path.join('logs', 'application.log'), level=logg
                     format='%(asctime)s.%(msecs)03d : %(levelname)s : %(message)s',
                     datefmt='%Y/%m/%d %H:%M:%S')
 
-PROJECT_VERSION = '1.0.2'
+PROJECT_VERSION = '1.0.3'
 
 APP = Flask(__name__)
 APP.secret_key = b'crushyna'
