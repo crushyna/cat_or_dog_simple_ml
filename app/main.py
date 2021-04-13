@@ -18,7 +18,7 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 if not os.path.exists(LOGS_FOLDER):
     os.makedirs(LOGS_FOLDER)
-    
+
 if not os.path.isfile(LOGS_FOLDER+'/application.log'):
     os.mknod(LOGS_FOLDER+'application.log')
 
@@ -26,7 +26,7 @@ logging.basicConfig(filename=os.path.join('logs', 'application.log'), level=logg
                     format='%(asctime)s.%(msecs)03d : %(levelname)s : %(message)s',
                     datefmt='%Y/%m/%d %H:%M:%S')
 
-PROJECT_VERSION = '1.0.3'
+PROJECT_VERSION = '1.0.4'
 
 APP = Flask(__name__)
 APP.secret_key = b'crushyna'
@@ -112,7 +112,7 @@ def upload_file():
             abort(502)
 
         logging.info("Correct file extension. Proceeding.")
-        filename, file_extension = os.path.splitext(uploaded_file.filename)
+        _, file_extension = os.path.splitext(uploaded_file.filename)
         session['filetype_ok'] = True
 
         temp_filename = StringHelpers.generate_random_string(8)
