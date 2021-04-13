@@ -97,7 +97,7 @@ def results():
 def upload_file():
     """
     Upload file from the user to the web application.
-    File gets checked, if it has correct extension.
+    File gets checked for correct extension.
     If yes, it gets resized for result page, and for ML engine (external).
     Than it's send to ML Server.
     Finally, function redirects to results page.

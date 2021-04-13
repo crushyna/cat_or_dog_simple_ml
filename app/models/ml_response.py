@@ -28,9 +28,10 @@ class MLResponseClass:
         try:
             logging.info(f"Sending request to: {ml_server_address}")
             url = ml_server_address
-            payload = open(image_file, 'rb')
-            headers = {'Content-Type': 'image/jpeg'}
-            response = requests.request("POST", url, headers=headers, data=payload)
+            files = [('file',
+                      ('image_file', open(image_file, 'rb'),
+                       'image/jpeg'))]
+            response = requests.request("POST", url, files=files)
             logging.info(f"Received response: {response}")
             return response.json()
 
