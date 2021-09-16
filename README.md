@@ -1,6 +1,6 @@
 # Cat or Dog - Simple ML Demo (with Azure Functions)
 
-### Demo available here: http://catordogmldemo.azurewebsites.net
+### Demo available here: -CURRENTLY UNAVAILABLE
 ---
 
 Simple demo of web application that can recognize animal (cat or dog) from a selected photography.
